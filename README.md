@@ -1,4 +1,4 @@
-# EduConnect - Freelancer Teachers & Students Platform
+# FreeMasw - Freelancer Teachers & Students Platform
 
 A modern web platform connecting freelancer teachers and students for personalized learning.
 
@@ -121,10 +121,10 @@ Password: password101
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/educonnect.git
+git clone https://github.com/yourusername/freemasw.git
 
-# Navigate to project directory
-cd educonnect
+Navigate to project directory
+cd freemasw
 
 # Open in browser
 open index.html

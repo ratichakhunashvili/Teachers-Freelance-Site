@@ -28,8 +28,8 @@ function loadUsersFromJSON() {
       email: "kendrick@example.com",
       password: "password123",
       accountType: "teacher",
-      subject: "Hip-Hop Production",
-      bio: "Legendary rapper teaching advanced lyrical techniques and beat making. Grammy award winner with years of industry experience.",
+      subject: "Advanced Mathematics",
+      bio: "Experienced teacher helping students master calculus, algebra, and advanced mathematical concepts.",
       profilePicture: "https://via.placeholder.com/200?text=Kendrick+Lamar",
       phone: "555-0101",
       location: "Compton, USA",
@@ -41,8 +41,8 @@ function loadUsersFromJSON() {
       email: "nicki@example.com",
       password: "password456",
       accountType: "teacher",
-      subject: "Rap & Songwriting",
-      bio: "Queen of Rap offering mentorship in freestyle, lyricism, and stage presence. Available for personal coaching.",
+      subject: "English Literature",
+      bio: "Passionate about teaching classic and modern literature, essay writing, and critical analysis.",
       profilePicture: "https://via.placeholder.com/200?text=Nicki+Minaj",
       phone: "555-0102",
       location: "Los Angeles, USA",
@@ -54,8 +54,8 @@ function loadUsersFromJSON() {
       email: "jcole@example.com",
       password: "password789",
       accountType: "teacher",
-      subject: "Music Production",
-      bio: "Grammy-winning producer teaching beat production, mixing, and mastering for hip-hop artists.",
+      subject: "Physics",
+      bio: "Physics expert teaching mechanics, thermodynamics, and quantum physics with real-world applications.",
       profilePicture: "https://via.placeholder.com/200?text=J+Cole",
       phone: "555-0103",
       location: "Durham, USA",
@@ -67,8 +67,8 @@ function loadUsersFromJSON() {
       email: "cardib@example.com",
       password: "password101",
       accountType: "student",
-      subject: "Rap & Performance",
-      bio: "Aspiring rapper learning stage presence and freestyle techniques from industry professionals.",
+      subject: "Chemistry",
+      bio: "Student eager to learn organic chemistry, molecular structure, and chemical reactions.",
       profilePicture: "https://via.placeholder.com/200?text=Cardi+B",
       phone: "555-0104",
       location: "New York, USA",
@@ -80,8 +80,8 @@ function loadUsersFromJSON() {
       email: "drake@example.com",
       password: "password202",
       accountType: "teacher",
-      subject: "Singing & Rapping",
-      bio: "Multi-talented artist teaching singing, rapping, and how to blend genres effectively.",
+      subject: "Biology",
+      bio: "Biology teacher specializing in genetics, cellular biology, and ecology with hands-on lab experience.",
       profilePicture: "https://via.placeholder.com/200?text=Drake",
       phone: "555-0105",
       location: "Toronto, Canada",
@@ -93,9 +93,10 @@ function loadUsersFromJSON() {
       email: "megan@example.com",
       password: "password303",
       accountType: "student",
-      subject: "Rap",
-      bio: "Passionate rapper learning from veterans, interested in improving lyricism and flow.",
-      profilePicture: "https://via.placeholder.com/200?text=Megan+Thee+Stallion",
+      subject: "World History",
+      bio: "Student interested in learning about world civilizations, historical events, and their impact today.",
+      profilePicture:
+        "https://via.placeholder.com/200?text=Megan+Thee+Stallion",
       phone: "555-0106",
       location: "Houston, USA",
       registeredDate: "2025-01-18",
@@ -157,10 +158,7 @@ function handleRegister(e) {
   users.push(newUser);
   saveUsersToJSON();
 
-  showMessage(
-    `Registration successful! Welcome, ${fullName}.`,
-    "success",
-  );
+  showMessage(`Registration successful! Welcome, ${fullName}.`, "success");
 
   setTimeout(() => {
     document.getElementById("registerForm").reset();
