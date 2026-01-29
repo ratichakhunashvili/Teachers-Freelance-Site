@@ -1,15 +1,12 @@
-// Global state
 let currentUser = null;
 let users = [];
 
-// Load data on page load
 document.addEventListener("DOMContentLoaded", function () {
   loadUsersFromJSON();
   setupEventListeners();
   checkLoggedIn();
 });
 
-// Setup event listeners
 function setupEventListeners() {
   const registerForm = document.getElementById("registerForm");
   const loginForm = document.getElementById("loginForm");
@@ -23,78 +20,98 @@ function setupEventListeners() {
   }
 }
 
-// Load users from JSON (simulated - in production this would be from a server)
 function loadUsersFromJSON() {
-  // Sample data - in a real application, this would come from a backend server
   users = [
     {
       id: 1,
-      fullName: "John Smith",
-      email: "john@example.com",
+      fullName: "Kendrick Lamar",
+      email: "kendrick@example.com",
       password: "password123",
       accountType: "teacher",
-      subject: "Mathematics",
-      bio: "Experienced mathematics teacher with 10 years of expertise in algebra and calculus.",
-      profilePicture: "https://via.placeholder.com/200?text=John+Smith",
+      subject: "Hip-Hop Production",
+      bio: "Legendary rapper teaching advanced lyrical techniques and beat making. Grammy award winner with years of industry experience.",
+      profilePicture: "https://via.placeholder.com/200?text=Kendrick+Lamar",
       phone: "555-0101",
-      location: "New York, USA",
+      location: "Compton, USA",
       registeredDate: "2025-01-01",
     },
     {
       id: 2,
-      fullName: "Emma Johnson",
-      email: "emma@example.com",
+      fullName: "Nicki Minaj",
+      email: "nicki@example.com",
       password: "password456",
       accountType: "teacher",
-      subject: "English Literature",
-      bio: "Passionate about teaching English literature and creative writing. Available for online tutoring.",
-      profilePicture: "https://via.placeholder.com/200?text=Emma+Johnson",
+      subject: "Rap & Songwriting",
+      bio: "Queen of Rap offering mentorship in freestyle, lyricism, and stage presence. Available for personal coaching.",
+      profilePicture: "https://via.placeholder.com/200?text=Nicki+Minaj",
       phone: "555-0102",
-      location: "London, UK",
+      location: "Los Angeles, USA",
       registeredDate: "2025-01-05",
     },
     {
       id: 3,
-      fullName: "Alex Chen",
-      email: "alex@example.com",
+      fullName: "J. Cole",
+      email: "jcole@example.com",
       password: "password789",
-      accountType: "student",
-      subject: "Programming",
-      bio: "Computer science student looking to learn web development and Python.",
-      profilePicture: "https://via.placeholder.com/200?text=Alex+Chen",
+      accountType: "teacher",
+      subject: "Music Production",
+      bio: "Grammy-winning producer teaching beat production, mixing, and mastering for hip-hop artists.",
+      profilePicture: "https://via.placeholder.com/200?text=J+Cole",
       phone: "555-0103",
-      location: "San Francisco, USA",
+      location: "Durham, USA",
       registeredDate: "2025-01-10",
     },
     {
       id: 4,
-      fullName: "Sofia Garcia",
-      email: "sofia@example.com",
+      fullName: "Cardi B",
+      email: "cardib@example.com",
       password: "password101",
-      accountType: "teacher",
-      subject: "Spanish Language",
-      bio: "Native Spanish speaker teaching Spanish language and culture. Beginner to advanced levels.",
-      profilePicture: "https://via.placeholder.com/200?text=Sofia+Garcia",
+      accountType: "student",
+      subject: "Rap & Performance",
+      bio: "Aspiring rapper learning stage presence and freestyle techniques from industry professionals.",
+      profilePicture: "https://via.placeholder.com/200?text=Cardi+B",
       phone: "555-0104",
-      location: "Madrid, Spain",
+      location: "New York, USA",
       registeredDate: "2025-01-12",
+    },
+    {
+      id: 5,
+      fullName: "Drake",
+      email: "drake@example.com",
+      password: "password202",
+      accountType: "teacher",
+      subject: "Singing & Rapping",
+      bio: "Multi-talented artist teaching singing, rapping, and how to blend genres effectively.",
+      profilePicture: "https://via.placeholder.com/200?text=Drake",
+      phone: "555-0105",
+      location: "Toronto, Canada",
+      registeredDate: "2025-01-15",
+    },
+    {
+      id: 6,
+      fullName: "Megan Thee Stallion",
+      email: "megan@example.com",
+      password: "password303",
+      accountType: "student",
+      subject: "Rap",
+      bio: "Passionate rapper learning from veterans, interested in improving lyricism and flow.",
+      profilePicture: "https://via.placeholder.com/200?text=Megan+Thee+Stallion",
+      phone: "555-0106",
+      location: "Houston, USA",
+      registeredDate: "2025-01-18",
     },
   ];
 
-  // Load from localStorage if available
   const storedUsers = localStorage.getItem("educonnect_users");
   if (storedUsers) {
     users = JSON.parse(storedUsers);
   }
 }
 
-// Save users to localStorage (simulating JSON storage)
 function saveUsersToJSON() {
   localStorage.setItem("educonnect_users", JSON.stringify(users));
-  // In production, this would send data to a backend server
 }
 
-// Register handler
 function handleRegister(e) {
   e.preventDefault();
 
@@ -110,13 +127,11 @@ function handleRegister(e) {
   const phone = document.getElementById("phone").value.trim();
   const location = document.getElementById("location").value.trim();
 
-  // Validation
   if (!fullName || !email || !password || !accountType || !subject) {
     showMessage("Please fill in all required fields", "error");
     return;
   }
 
-  // Check if email already exists
   if (users.some((user) => user.email === email)) {
     showMessage(
       "Email already registered. Please use a different email.",
@@ -125,7 +140,6 @@ function handleRegister(e) {
     return;
   }
 
-  // Create new user
   const newUser = {
     id: users.length > 0 ? Math.max(...users.map((u) => u.id)) + 1 : 1,
     fullName,
@@ -144,17 +158,19 @@ function handleRegister(e) {
   saveUsersToJSON();
 
   showMessage(
-    `Registration successful! Welcome, ${fullName}. Please login to your account.`,
+    `Registration successful! Welcome, ${fullName}.`,
     "success",
   );
 
   setTimeout(() => {
     document.getElementById("registerForm").reset();
-    showSection("login");
-  }, 2000);
+    currentUser = newUser;
+    localStorage.setItem("educonnect_currentUser", JSON.stringify(newUser));
+    updateNavbar();
+    showSection("search");
+  }, 1500);
 }
 
-// Login handler
 function handleLogin(e) {
   e.preventDefault();
 
@@ -177,24 +193,20 @@ function handleLogin(e) {
 
   setTimeout(() => {
     document.getElementById("loginForm").reset();
-    showSection("home");
     updateNavbar();
-  }, 1500);
+    showSection("search");
+  }, 1000);
 }
 
-// Show section
 function showSection(sectionId) {
-  // Hide all sections
   const sections = document.querySelectorAll(".section");
   sections.forEach((section) => section.classList.remove("active"));
 
-  // Show selected section
   const selectedSection = document.getElementById(sectionId);
   if (selectedSection) {
     selectedSection.classList.add("active");
   }
 
-  // Handle specific section logic
   if (sectionId === "profile") {
     displayProfile();
   } else if (sectionId === "search") {
@@ -249,7 +261,6 @@ function displayProfile() {
   profileContent.innerHTML = profileHTML;
 }
 
-// Edit profile
 function editProfile() {
   if (!currentUser) return;
 
@@ -268,7 +279,6 @@ function editProfile() {
   );
   if (newProfilePicture === null) return;
 
-  // Update user
   const userIndex = users.findIndex((u) => u.id === currentUser.id);
   if (userIndex !== -1) {
     users[userIndex].bio = newBio;
@@ -285,7 +295,6 @@ function editProfile() {
   }
 }
 
-// Delete account
 function deleteAccount() {
   if (!currentUser) return;
 
@@ -301,7 +310,6 @@ function deleteAccount() {
   }
 }
 
-// Search users
 function searchUsers() {
   const searchInput = document
     .getElementById("searchInput")
@@ -319,12 +327,10 @@ function searchUsers() {
   displaySearchResults(filtered);
 }
 
-// Display all users
 function displayAllUsers() {
   displaySearchResults(users);
 }
 
-// Display search results
 function displaySearchResults(results) {
   const searchResults = document.getElementById("searchResults");
 
@@ -344,7 +350,7 @@ function displaySearchResults(results) {
             <div class="user-card-body">
                 <div class="user-card-name">${user.fullName}</div>
                 <span class="user-card-type">${user.accountType}</span>
-                <div class="user-card-subject">📚 ${user.subject}</div>
+                <div class="user-card-subject">🎤 ${user.subject}</div>
                 <div class="user-card-bio">${user.bio}</div>
                 <div class="user-card-details">📍 ${user.location || "Location not provided"}</div>
                 <div class="user-card-details">📞 ${user.phone || "Phone not provided"}</div>
@@ -360,7 +366,6 @@ function displaySearchResults(results) {
   searchResults.innerHTML = cardsHTML;
 }
 
-// Contact user
 function contactUser(userId) {
   const user = users.find((u) => u.id === userId);
   if (user) {
@@ -369,25 +374,21 @@ function contactUser(userId) {
   }
 }
 
-// Show message
 function showMessage(message, type) {
   const messageDiv = document.createElement("div");
   messageDiv.className = `${type}-message`;
   messageDiv.textContent = message;
 
-  // Insert at the top of the current active section
   const activeSection = document.querySelector(".section.active");
   if (activeSection) {
     activeSection.insertBefore(messageDiv, activeSection.firstChild);
   }
 
-  // Remove message after 5 seconds
   setTimeout(() => {
     messageDiv.remove();
   }, 5000);
 }
 
-// Logout
 function logout() {
   currentUser = null;
   localStorage.removeItem("educonnect_currentUser");
@@ -396,7 +397,6 @@ function logout() {
   showMessage("Logged out successfully", "success");
 }
 
-// Update navbar based on login status
 function updateNavbar() {
   const logoutBtn = document.querySelector(".logout-btn");
   if (currentUser) {
@@ -406,12 +406,10 @@ function updateNavbar() {
   }
 }
 
-// Check if user is logged in on page load
 function checkLoggedIn() {
   const storedUser = localStorage.getItem("educonnect_currentUser");
   if (storedUser) {
     currentUser = JSON.parse(storedUser);
-    // Verify user still exists in users array
     const userExists = users.find((u) => u.id === currentUser.id);
     if (userExists) {
       updateNavbar();
@@ -423,7 +421,6 @@ function checkLoggedIn() {
   updateNavbar();
 }
 
-// Export users as JSON (for backup purposes)
 function exportUsersJSON() {
   const dataStr = JSON.stringify(users, null, 2);
   const dataBlob = new Blob([dataStr], { type: "application/json" });
