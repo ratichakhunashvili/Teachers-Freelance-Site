@@ -1,0 +1,56 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "fullName": "John Smith",
+      "email": "john@example.com",
+      "password": "password123",
+      "accountType": "teacher",
+      "subject": "Mathematics",
+      "bio": "Experienced mathematics teacher with 10 years of expertise in algebra and calculus.",
+      "profilePicture": "https://api.placeholder.com/200x200?text=John+Smith",
+      "phone": "555-0101",
+      "location": "New York, USA",
+      "registeredDate": "2025-01-01"
+    },
+    {
+      "id": 2,
+      "fullName": "Emma Johnson",
+      "email": "emma@example.com",
+      "password": "password456",
+      "accountType": "teacher",
+      "subject": "English Literature",
+      "bio": "Passionate about teaching English literature and creative writing. Available for online tutoring.",
+      "profilePicture": "https://api.placeholder.com/200x200?text=Emma+Johnson",
+      "phone": "555-0102",
+      "location": "London, UK",
+      "registeredDate": "2025-01-05"
+    },
+    {
+      "id": 3,
+      "fullName": "Alex Chen",
+      "email": "alex@example.com",
+      "password": "password789",
+      "accountType": "student",
+      "subject": "Programming",
+      "bio": "Computer science student looking to learn web development and Python.",
+      "profilePicture": "https://api.placeholder.com/200x200?text=Alex+Chen",
+      "phone": "555-0103",
+      "location": "San Francisco, USA",
+      "registeredDate": "2025-01-10"
+    },
+    {
+      "id": 4,
+      "fullName": "Sofia Garcia",
+      "email": "sofia@example.com",
+      "password": "password101",
+      "accountType": "teacher",
+      "subject": "Spanish Language",
+      "bio": "Native Spanish speaker teaching Spanish language and culture. Beginner to advanced levels.",
+      "profilePicture": "https://api.placeholder.com/200x200?text=Sofia+Garcia",
+      "phone": "555-0104",
+      "location": "Madrid, Spain",
+      "registeredDate": "2025-01-12"
+    }
+  ]
+}
